@@ -22,6 +22,12 @@ if (file_exists("../config.php")) { //if config.php already exists stop the scri
 
 $currenturl = str_replace("?step=4", "", $currenturl); //set script URL to be saved in the config.php file
 
+if (IsNotNullOrEmptyString($_POST['setupawsAccessKey']) && IsNotNullOrEmptyString($_POST['setupawsSecretKey']) && IsNotNullOrEmptyString($_POST['setups3bucket'])) {
+	$useS3 = "yes";
+} else {
+	$useS3 = "no";
+}
+
 $configfiletocreate = '<?php
 
 #################################################################
@@ -108,6 +114,17 @@ $copyright = "'._("Your copyright notice").'"; // Copyright notice
 $feed_encoding = "utf-8"; // Feed Encoding (e.g. "iso-8859-1", "utf-8"). UTF-8 is strongly suggested
 
 $explicit_podcast = "no"; //does your podcast contain explicit language? ("yes", "no" or "clean")
+
+####################
+# S3 Settings
+
+$useS3 = "'.$useS3.'";
+
+$awsAccessKey = "'.$_POST['setupawsAccessKey'].'";
+
+$awsSecretKey = "'.$_POST['setupawsSecretKey'].'";
+
+$s3bucket = "'.$_POST['setups3bucket'].'";
 
 // END OF CONFIGURATION
 

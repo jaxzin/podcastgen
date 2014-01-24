@@ -1051,6 +1051,10 @@ return $resulting_episodes; // return results
 
 } // end function showPodcastEpisodes
 
+// Function for basic field validation (present and neither empty nor only white space
+function IsNotNullOrEmptyString($question){
+    return !(!isset($question) || trim($question)==='');
+}
 
 
 

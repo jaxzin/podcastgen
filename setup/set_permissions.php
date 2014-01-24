@@ -101,7 +101,7 @@ $script_directory = "../";
 				<form method="post" action="index.php?step=3">
 				<br />
 				<input type="hidden" name="setuplanguage" value="'.$_POST['setuplanguage'].'">
-				<input type="submit" value="'._("Next").'">
+				<input type="submit" value="'._("Use filesystem").'">
 				</form>
 				';
 
@@ -139,6 +139,28 @@ $script_directory = "../";
 
 		}
 
+		$PG_mainbody .=  "<br /><br /><p>"._("...or enter your Amazon S3 bucket and keys to use S3.")."</p><br />";
+
+		$PG_mainbody .= '
+			<form method="post" action="index.php?step=3">
+			<br />
+				<label for="awsAccessKey">'._("AWS Access Key:").'</label><br />
+
+				<input id="awsAccessKey" name="awsAccessKey" type="text" size="20" maxlength="20"><br />
+
+				<label for="awsSecretKey">'._("AWS Secret Key:").'</label><br />
+
+				<input id="awsSecretKey" name="awsSecretKey" type="text" size="20" maxlength="20"><br />
+
+				<label for="s3bucket">'._("S3 Bucket").'</label><br />
+
+				<input name="s3bucket" id="s3bucket" type="text" size="20" maxlength="20" value=""><br /><br /><br />
+
+
+			<input type="hidden" name="setuplanguage" value="'.$_POST['setuplanguage'].'">
+			<input type="submit" value="'._("Use S3").'">
+			</form>
+			';
 
 
 		#######
