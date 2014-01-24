@@ -1051,11 +1051,39 @@ return $resulting_episodes; // return results
 
 } // end function showPodcastEpisodes
 
-// Function for basic field validation (present and neither empty nor only white space
-function IsNotNullOrEmptyString($question){
-    return !(!isset($question) || trim($question)==='');
+//=====================================
+// S3 Support
+if($useS3 == "yes") {
+	if (!class_exists('S3')) require_once("$absoluteurl"."components/s3/S3.php"); // read from and write to Amazon S3
+	$s3 = new S3($awsAccessKey, $awsSecretKey);
 }
 
+function fileExists($filename) {
+	global $absoluteurl, $s3, $useS3, $s3bucket;
+
+	if($useS3 == "yes") {
+		$info = $s3->getObjectInfo($s3bucket, $filename);
+		if(is_bool($info)) {
+			return $info;
+		} else {
+			return true;
+		}
+	} else {
+		return file_exists("$absoluteurl"."$filename");
+	}
+}
+
+function writeFile($filename, $texttowrite) {
+	global $absoluteurl, $s3, $useS3, $s3bucket;
+
+	if($useS3 == "yes") {
+		$s3->putObject($texttowrite, $s3bucket, $filename, S3::ACL_PUBLIC_READ, array(), array('Content-Type' => 'text/plain'));
+	} else {
+		$handle = fopen("$absoluteurl"."$filename",'w'); //create categories file
+		fwrite($handle,$texttowrite); //write content into the file
+		fclose($handle);
+	}
+}
 
 
 

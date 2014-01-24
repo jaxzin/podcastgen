@@ -146,11 +146,11 @@ $script_directory = "../";
 			<br />
 				<label for="awsAccessKey">'._("AWS Access Key:").'</label><br />
 
-				<input id="awsAccessKey" name="awsAccessKey" type="text" size="20" maxlength="20"><br />
+				<input id="awsAccessKey" name="awsAccessKey" type="text" size="30" maxlength="30"><br />
 
 				<label for="awsSecretKey">'._("AWS Secret Key:").'</label><br />
 
-				<input id="awsSecretKey" name="awsSecretKey" type="text" size="20" maxlength="20"><br />
+				<input id="awsSecretKey" name="awsSecretKey" type="text" size="50" maxlength="50"><br />
 
 				<label for="s3bucket">'._("S3 Bucket").'</label><br />
 

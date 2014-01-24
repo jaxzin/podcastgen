@@ -16,7 +16,7 @@ if (isset($_REQUEST['GLOBALS']) OR isset($_REQUEST['absoluteurl']) OR isset($_RE
 
 ######################## FREEBOX FILE CREATION
 
-if (file_exists("../freebox-content.txt")) { //if freebox text is already present
+if (fileExists("freebox-content.txt")) { //if freebox text is already present
 
 	echo "<span style=\"color:red;\">"._("Freebox text already exists...")."</span><br />";
 
@@ -34,10 +34,7 @@ $texttowrite = '<p class="nav-header">'._('This is FREEBOX').'</p><p><img src=im
 //$texttowrite = htmlspecialchars($texttowrite);
 //$texttowrite = depurateContent($texttowrite);
 
-
-$createtxtbox = fopen("$absoluteurl"."freebox-content.txt",'w'); //create categories file
-fwrite($createtxtbox,$texttowrite); //write content into the file
-fclose($createtxtbox);
+writeFile("freebox-content.txt", $texttowrite);
 
 }
 
@@ -48,7 +45,7 @@ fclose($createtxtbox);
 ######################## CATEGORY FILE CREATION
 
 
-if (file_exists("../categories.xml")) { //if categories already exist stop the script
+if (fileExists("categories.xml")) { //if categories already exist stop the script
 
 	echo "<span style=\"color:red;\">"._("Categories file already exists...")."</span><br />";
 
@@ -71,9 +68,7 @@ $categoriesfiletocreate = '<?xml version="1.0" encoding="utf-8"?>
 	</category>
 	</PodcastGenerator>';
 
-$createcatf = fopen("$absoluteurl"."categories.xml",'w'); //create categories file
-fwrite($createcatf,$categoriesfiletocreate); //write content into the file
-fclose($createcatf);
+writeFile("categories.xml", $categoriesfiletocreate);
 
 }
 

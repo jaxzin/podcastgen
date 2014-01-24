@@ -22,12 +22,6 @@ if (file_exists("../config.php")) { //if config.php already exists stop the scri
 
 $currenturl = str_replace("?step=4", "", $currenturl); //set script URL to be saved in the config.php file
 
-if (IsNotNullOrEmptyString($_POST['setupawsAccessKey']) && IsNotNullOrEmptyString($_POST['setupawsSecretKey']) && IsNotNullOrEmptyString($_POST['setups3bucket'])) {
-	$useS3 = "yes";
-} else {
-	$useS3 = "no";
-}
-
 $configfiletocreate = '<?php
 
 #################################################################
@@ -120,11 +114,11 @@ $explicit_podcast = "no"; //does your podcast contain explicit language? ("yes",
 
 $useS3 = "'.$useS3.'";
 
-$awsAccessKey = "'.$_POST['setupawsAccessKey'].'";
+$awsAccessKey = "'.$awsAccessKey.'";
 
-$awsSecretKey = "'.$_POST['setupawsSecretKey'].'";
+$awsSecretKey = "'.$awsSecretKey.'";
 
-$s3bucket = "'.$_POST['setups3bucket'].'";
+$s3bucket = "'.$s3bucket.'";
 
 // END OF CONFIGURATION
 

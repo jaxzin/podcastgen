@@ -21,6 +21,21 @@ $user = $_POST['username'];
 $pwd = $_POST['password'];
 $pwd2 = $_POST['password2'];
 
+// Need this here for firstcreateconfig.php can use S3, if needed
+$awsAccessKey = $_POST['setupawsAccessKey'];
+$awsSecretKey = $_POST['setupawsSecretKey'];
+$s3bucket = $_POST['setups3bucket'];
+
+// Function for basic field validation (present and neither empty nor only white space
+function IsNotNullOrEmptyString($question){
+    return !(!isset($question) || trim($question)==='');
+}
+
+$useS3 = "no";
+if (IsNotNullOrEmptyString($awsAccessKey) && IsNotNullOrEmptyString($awsSecretKey) && IsNotNullOrEmptyString($s3bucket)) {
+	$useS3 = "yes";
+}
+
 if (isset($user) AND $user != "") {
 
 	if (isset($pwd) AND isset($pwd2) AND $pwd == $pwd2) { // IF ALL IS OK
