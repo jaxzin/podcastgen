@@ -23,12 +23,7 @@ if (isset($_GET['p']) AND $_GET['p']=="admin" AND isset($_GET['do']) AND $_GET['
 
 	$PG_mainbody .= '<h3>'._("FreeBox").'</h3>';
 
-	$fp1 = fopen("$absoluteurl"."freebox-content.txt", "w+"); //Apri il file in lettura e svuotalo (w+)
-	fclose($fp1);
-
-	$fp = fopen("$absoluteurl"."freebox-content.txt", "a+"); //testa xml
-	fwrite($fp, "$freeboxcontent"); 
-	fclose($fp);
+	writeFile("freebox-content.txt", "$freeboxcontent"); 
 
 	$PG_mainbody .= ""._("Your freebox has been updated!")."";
 
@@ -39,9 +34,9 @@ else {
 
 	$PG_mainbody .= '<h3>'._("FreeBox").'</h3>';
 
-	if(file_exists("$absoluteurl"."freebox-content.txt")){
+	if(fileExists("freebox-content.txt")){
 
-		$freeboxcontenttodisplay = file_get_contents("$absoluteurl"."freebox-content.txt");
+		$freeboxcontenttodisplay = readFile("freebox-content.txt");
 		} else { $freeboxcontenttodisplay = NULL; }
 
 		

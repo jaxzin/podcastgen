@@ -18,7 +18,7 @@ if (isset($_REQUEST['GLOBALS']) OR isset($_REQUEST['absoluteurl']) OR isset($_RE
 
 //Get the XML document loaded into a variable (The xml parser must be previously included)
 
-if (file_exists($absoluteurl."components/podcastgen_languages/podcastgen_languages.xml")) {
+if (fileExists("components/podcastgen_languages/podcastgen_languages.xml")) {
 
 
 	//$xml = file_get_contents(absoluteurl.'components/podcastgen_languages/podcastgen_languages.xml');
@@ -31,7 +31,7 @@ if (file_exists($absoluteurl."components/podcastgen_languages/podcastgen_languag
 
 
 
-$parser = simplexml_load_file($absoluteurl.'components/podcastgen_languages/podcastgen_languages.xml','SimpleXMLElement',LIBXML_NOCDATA);
+$parser = simplexml_load_file(getFileURI('components/podcastgen_languages/podcastgen_languages.xml'),'SimpleXMLElement',LIBXML_NOCDATA);
 
 }
 

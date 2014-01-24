@@ -26,7 +26,7 @@ include ("$absoluteurl"."core/admin/readXMLcategories.php");
 
 
 
-if (file_exists("$absoluteurl"."categories.xml")) {
+if (fileExists("categories.xml")) {
 //if (file_exists("$absoluteurl"."categories.xml") AND isset($parser->document->category)) {
 
 	///// DETERMINE NEW PODCAST OR EDIT PODCAST MODE

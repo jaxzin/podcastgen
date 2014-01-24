@@ -197,9 +197,9 @@ if (isset($amilogged) AND $amilogged =="true") { //if you are logged do not disp
 
 	} elseif($freebox == "yes") {
 
-		if(file_exists("$absoluteurl"."freebox-content.txt")){
+		if(fileExists("freebox-content.txt")){
 
-			$freeboxcontenttodisplay = file_get_contents("$absoluteurl"."freebox-content.txt");	
+			$freeboxcontenttodisplay = readFile("freebox-content.txt");	
 
 			$freeboxcontent = "<div class=\"rightbox\">
 				$freeboxcontenttodisplay

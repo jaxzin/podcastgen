@@ -417,10 +417,10 @@ if (!isset($atLeastOneEpisodeInCategory )) $atLeastOneEpisodeInCategory = FALSE;
 					$file_size = round(filesize("$absoluteurl"."$upload_dir$filenameWithouExtension.$podcast_filetype")/1048576,2);
 
 					
-					$filedescr = $absoluteurl.$upload_dir.$filenameWithouExtension.'.xml'; //database file
+					$filedescr = $upload_dir.$filenameWithouExtension.'.xml'; //database file
 
 
-					if (file_exists($filedescr)) { //if database file exists 
+					if (fileExists($filedescr)) { //if database file exists 
 
 
 	# READ the XML database file and parse the fields
@@ -843,10 +843,10 @@ if (isset($singleEpisode) AND $singleEpisode != NULL ) {
 					$file_timestamp = filemtime($absoluteurl."$upload_dir$filenameWithouExtension.$podcast_filetype");
 					
 					
-					$filedescr = $absoluteurl.$upload_dir.$filenameWithouExtension.'.xml'; //database file
+					$filedescr = $upload_dir.$filenameWithouExtension.'.xml'; //database file
 
 
-					if (file_exists($filedescr)) { //if database file exists 
+					if (fileExists($filedescr)) { //if database file exists 
 
 
 	# READ the XML database file and parse the fields
@@ -1079,13 +1079,58 @@ function writeFile($filename, $texttowrite) {
 	if($useS3 == "yes") {
 		$s3->putObject($texttowrite, $s3bucket, $filename, S3::ACL_PUBLIC_READ, array(), array('Content-Type' => 'text/plain'));
 	} else {
-		$handle = fopen("$absoluteurl"."$filename",'w'); //create categories file
+		$handle = fopen("$absoluteurl"."$filename",'w+'); //create categories file
 		fwrite($handle,$texttowrite); //write content into the file
 		fclose($handle);
 	}
 }
 
+function appendFile($filename, $texttowrite) {
+	global $absoluteurl, $s3, $useS3, $s3bucket;
 
+	if($useS3 == "yes") {
+		$currentContents = $s3->getObject($s3bucket, $filename);
+		$newContents = "$currentContent"."$texttowrite";
+		
+		$s3->putObject($newContents, $s3bucket, $filename, S3::ACL_PUBLIC_READ, array(), array('Content-Type' => 'text/plain'));
+	} else {
+		$handle = fopen("$absoluteurl"."$filename",'a+'); //create categories file
+		fwrite($handle,$texttowrite); //write content into the file
+		fclose($handle);
+	}
+}
+
+function removeFile($filename) {
+	global $absoluteurl, $s3, $useS3, $s3bucket;
+
+	if($useS3 == "yes") {
+		$s3->deleteObject($s3bucket, $filename);
+	} else {
+		unlink("$absoluteurl"."$filename");
+	}
+}
+
+function readFile($filename) {
+	global $absoluteurl, $s3, $useS3, $s3bucket;
+
+	if($useS3 == "yes") {
+		return $s3->getObject($s3bucket, $filename);
+	} else {
+		return file_get_contents("$absoluteurl"."$filename");
+	}
+}
+
+
+
+function getFileURI($filename) {
+	global $absoluteurl, $s3, $useS3, $s3bucket;
+
+	if($useS3 == "yes") {
+		return "http://"."$s3bucket".".s3.amazonaws.com/"."$filename";
+	} else {
+		return "$absoluteurl"."$filename";
+	}
+}
 
 
 ?>

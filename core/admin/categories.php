@@ -41,7 +41,7 @@ if ($categoriesenabled == "yes") { /////// if categories are enabled in config.p
 		
 		include ("$absoluteurl"."core/admin/readXMLcategories.php");
 
-		if (file_exists("$absoluteurl"."categories.xml")) {
+		if (fileExists("categories.xml")) {
 
 
 			######

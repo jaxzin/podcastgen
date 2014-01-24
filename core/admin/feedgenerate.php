@@ -216,12 +216,12 @@ if (isset($_GET['p'])) if ($_GET['p']=="admin") { // if admin is called from the
 
 
 						############
-						$filedescr = "$absoluteurl"."$upload_dir$file_multimediale[0].xml"; //database file
+						$filedescr = "$upload_dir$file_multimediale[0].xml"; //database file
 
 
 
 
-						if (file_exists("$filedescr")) { //if database file exists 
+						if (fileExists("$filedescr")) { //if database file exists 
 
 
 							//$file_contents=NULL; 
@@ -354,12 +354,7 @@ if (isset($_GET['p'])) if ($_GET['p']=="admin") { // if admin is called from the
 	
 	if (!isset($single_file)) $single_file = ""; // avoid notice
 	####
-	$fp1 = fopen("$feedfilename", "w+"); //Apri il file in lettura e svuotalo (w+)
-	fclose($fp1);
-
-	$fp = fopen("$feedfilename", "a+"); //testa xml
-	fwrite($fp, "$head_feed"."$single_file"."$tail_feed"); 
-	fclose($fp);
+	fileWrite("$feedfilename", "$head_feed"."$single_file"."$tail_feed");
 
 	############
 

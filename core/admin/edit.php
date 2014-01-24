@@ -35,7 +35,7 @@ else {
 		$file_multimediale = $_GET['name'];
 
 
-		if (file_exists("$absoluteurl"."$upload_dir$file_multimediale")) {
+		if (fileExists("$upload_dir$file_multimediale")) {
 
 
 			//		require_once("$absoluteurl"."components/getid3/getid3.php"); //read id3 tags in media files (e.g.title, duration)
@@ -75,9 +75,9 @@ else {
 
 
 					############
-					$filedescr = "$absoluteurl"."$upload_dir$file_multimediale[0].xml"; //database file
+					$filedescr = "$upload_dir$file_multimediale[0].xml"; //database file
 
-					if (file_exists("$filedescr")) { //if database file exists 
+					if (fileExists("$filedescr")) { //if database file exists 
 
 
 						//$file_contents=NULL; 

@@ -108,11 +108,7 @@ $xmlfiletocreate .= '
 
 /////////////////////
 // WRITE THE XML FILE
-$fp = fopen("categories.xml",'w+'); //open desc file or create it
-
-fwrite($fp,$xmlfiletocreate);
-
-fclose($fp);
+writeFile("categories.xml", $xmlfiletocreate);
 
 } // 001 end 
 

@@ -26,15 +26,15 @@ if (isset($_GET['file']) AND $_GET['file']!=NULL) {
 
 
 
-	if (file_exists("$absoluteurl$upload_dir$file.$ext")) {
-		unlink ("$upload_dir$file.$ext");
+	if (fileExists("$upload_dir$file.$ext")) {
+		removeFile("$upload_dir$file.$ext");
 		$PG_mainbody .="<p><b>$file.$ext</b> "._("has been deleted")."</p>";
 
 	}
 
-	if (file_exists("$absoluteurl$upload_dir$file.xml")) {
+	if (fileExists("$upload_dir$file.xml")) {
 
-		unlink ("$absoluteurl$upload_dir$file.xml"); // DELETE THE FILE
+		removeFile ("$upload_dir$file.xml"); // DELETE THE FILE
 
 	}
 
@@ -43,9 +43,9 @@ if (isset($_GET['file']) AND $_GET['file']!=NULL) {
 
 		$img = $_GET['img'];
 
-		if (file_exists("$absoluteurl$img_dir$img")) { // if associated image exists
+		if (fileExists("$img_dir$img")) { // if associated image exists
 
-			unlink ("$absoluteurl$img_dir$img"); // DELETE IMAGE FILE
+			removeFile ("$img_dir$img"); // DELETE IMAGE FILE
 
 			$PG_mainbody .="<p>"._("Image associated to this file deleted")."</p>";
 		}

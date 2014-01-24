@@ -43,7 +43,7 @@ if ($add != NULL and $add != "all") { /// 000
 	$id = renamefilestrict ($add);
 
 	
-	$parser = simplexml_load_file($absoluteurl."categories.xml",'SimpleXMLElement',LIBXML_NOCDATA);
+	$parser = simplexml_load_file(getFileURI("categories.xml"),'SimpleXMLElement',LIBXML_NOCDATA);
 
 	//parse
 //	if (isset($parser->document->category)) {
@@ -105,11 +105,7 @@ if ($add != NULL and $add != "all") { /// 000
 
 	/////////////////////
 	// WRITE THE XML FILE
-	$fp = fopen("categories.xml",'w+'); //open desc file or create it
-
-	fwrite($fp,$xmlfiletocreate);
-
-	fclose($fp);
+	writeFile("categories.xml", $xmlfiletocreate);
 
 	$PG_mainbody .= '<p>'._("New category:").' <i>'.$val.'</i></p>';
 

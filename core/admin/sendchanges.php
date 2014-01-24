@@ -300,11 +300,7 @@ $PG_mainbody .= "<p><b>"._("Processing changes...")."</b></p>";
 
 						/////////////////////
 						// WRITE THE XML FILE
-						$fp = fopen($absoluteurl.$upload_dir.$file_desc,'w'); //open desc file or create it
-
-						fwrite($fp,$xmlfiletocreate);
-
-						fclose($fp);
+						writeFile($absoluteurl.$upload_dir.$file_desc, $xmlfiletocreate);
 
 
 						########## END CREATION XML FILE

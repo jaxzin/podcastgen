@@ -87,14 +87,14 @@ if (isset($_GET['p'])) if ($_GET['p']=="admin") { // if admin is called from the
 
 
 						############
-						$filedescr = "$absoluteurl"."$upload_dir$file_multimediale[0].xml"; //database file
+						$filedescr = "$upload_dir$file_multimediale[0].xml"; //database file
 
 
 
 						### "FTP FEATURE" check if there are media files in /media directory uploaded manually, if you find, create a proper XML file and add to the podcast
 
 
-						if (file_exists("$absoluteurl"."$upload_dir$file_multimediale[0].$podcast_filetype") AND !file_exists("$filedescr")) { //if there is the multimedia file but not the database file with information
+						if (fileExists("$upload_dir$file_multimediale[0].$podcast_filetype") AND !fileExists("$filedescr")) { //if there is the multimedia file but not the database file with information
 
 							$PG_mainbody .= '<br /><ul><li><p><b>'._("Media file found:").'</b> '.$file_multimediale[0].'.'.$podcast_filetype.'</li></ul></p>';
 
@@ -184,7 +184,7 @@ if (isset($_GET['p'])) if ($_GET['p']=="admin") { // if admin is called from the
 
 									$filesuffix = NULL;
 
-									while (file_exists("$absoluteurl"."$upload_dir$renamedfile")) { //cicle: if file already exists add an incremental suffix
+									while (fileExists("$upload_dir$renamedfile")) { //cicle: if file already exists add an incremental suffix
 										$filesuffix++;
 
 										# echo "$filesuffix"; //debug
@@ -196,16 +196,14 @@ if (isset($_GET['p'])) if ($_GET['p']=="admin") { // if admin is called from the
 									copy("$absoluteurl"."$upload_dir$file_multimediale[0].$podcast_filetype", "$absoluteurl"."$upload_dir$renamedfile"); //copy the file (to rename it) 
 
 									#delete old episode file (original name)
-									if (file_exists("$absoluteurl"."$upload_dir$file_multimediale[0].$podcast_filetype")) { 
-										unlink ("$absoluteurl"."$upload_dir$file_multimediale[0].$podcast_filetype"); //delete original file, if exists
+									if (fileExists("$upload_dir$file_multimediale[0].$podcast_filetype")) { 
+										removeFile ("$upload_dir$file_multimediale[0].$podcast_filetype"); //delete original file, if exists
 									}
 
 									$newxmlfilename = "$absoluteurl"."$upload_dir"."$filenamechanged"."$filesuffix".".xml";
 
 									### create corresponding XML
-									$fp = fopen($newxmlfilename,'a'); //create XML file
-									fwrite($fp,$xmlfiletocreate);
-									fclose($fp);
+									appendFile($newxmlfilename, $xmlfiletocreate);
 
 									$files_count++; //add number to file count
 

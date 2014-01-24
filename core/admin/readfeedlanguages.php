@@ -18,7 +18,7 @@ if (isset($_REQUEST['GLOBALS']) OR isset($_REQUEST['absoluteurl']) OR isset($_RE
 
 //Get the XML document loaded into a variable (The xml parser must be previously included)
 
-if (file_exists($absoluteurl."components/feed_languages/feed_languages.xml")) {
+if (fileExists("components/feed_languages/feed_languages.xml")) {
 
 //	$xml = file_get_contents($absoluteurl."components/feed_languages/feed_languages.xml");
 	
@@ -26,7 +26,7 @@ if (file_exists($absoluteurl."components/feed_languages/feed_languages.xml")) {
 //	$parser = new XMLParser($xml);
 	
 
-		$parser = simplexml_load_file($absoluteurl.'components/feed_languages/feed_languages.xml','SimpleXMLElement',LIBXML_NOCDATA);
+		$parser = simplexml_load_file(getFileURI('components/feed_languages/feed_languages.xml'),'SimpleXMLElement',LIBXML_NOCDATA);
 	
 
 	//Parse the XML file with categories data...

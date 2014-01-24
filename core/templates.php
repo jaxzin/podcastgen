@@ -196,9 +196,9 @@ $theme_file_contents = str_replace("-----PG2_ADMINRIGHTBOX-----", $adminrightbox
 $freeboxcontent = NULL;
 	if (!isThisAdminPage() AND $freebox == "yes") { //if it's an admin page do not display freebox - and freebox is enabled
 
-		if(file_exists("$absoluteurl"."freebox-content.txt")){
+		if(fileExists("freebox-content.txt")){
 
-			$freeboxcontenttodisplay = file_get_contents("$absoluteurl"."freebox-content.txt");	
+			$freeboxcontenttodisplay = readFile("freebox-content.txt");	
 
 			$freeboxcontent = '<div class="rightbox">
 				'.$freeboxcontenttodisplay.'

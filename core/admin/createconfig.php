@@ -115,13 +115,22 @@ if(isset($amilogged) AND $amilogged =="true") { //if logged
 
 	$explicit_podcast = "'.$explicit_podcast.'"; //does your podcast contain explicit language? ("yes", "no" or "clean")
 
+	####################
+	# S3 Settings
+
+	$useS3 = "'.$useS3.'";
+
+	$awsAccessKey = "'.$awsAccessKey.'";
+
+	$awsSecretKey = "'.$awsSecretKey.'";
+
+	$s3bucket = "'.$s3bucket.'";
+
 	// END OF CONFIGURATION
 
 	?>';
 
-	$createcf = fopen("$absoluteurl"."config.php",'w'); //open config file
-	fwrite($createcf,$configfiletocreate); //write content into the config file
-	fclose($createcf);
+	writeFile("config.php", $configfiletocreate);
 
 	// $PG_mainbody .= '<b>'._("Config.php created!").'</b><br />';
 

@@ -16,9 +16,9 @@ if (isset($_REQUEST['GLOBALS']) OR isset($_REQUEST['absoluteurl']) OR isset($_RE
 
 //Get the XML document loaded into a variable (The xml parser must be previously included)
 
-if (file_exists("$absoluteurl"."categories.xml")) {
+if (fileExists("categories.xml")) {
 
-	$xml = file_get_contents("$absoluteurl"."categories.xml");
+	$xml = readFile("categories.xml");
 
 	// define variables
 	$arr = NULL;
@@ -26,7 +26,7 @@ if (file_exists("$absoluteurl"."categories.xml")) {
 	$n = 0;
 
 	
-	$parser = simplexml_load_file($absoluteurl."categories.xml",'SimpleXMLElement',LIBXML_NOCDATA);
+	$parser = simplexml_load_file(getFileURI("categories.xml"),'SimpleXMLElement',LIBXML_NOCDATA);
 
 	//var_dump($parser); //Debug
 

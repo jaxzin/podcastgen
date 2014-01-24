@@ -52,9 +52,9 @@ if(isset($amilogged) AND $amilogged =="true") {
 */
 
 
-if (file_exists($absoluteurl."components/itunes_categories/itunes_categories.xml")) {
+if (fileExists("components/itunes_categories/itunes_categories.xml")) {
 
-$parser = simplexml_load_file($absoluteurl.'components/itunes_categories/itunes_categories.xml','SimpleXMLElement',LIBXML_NOCDATA);
+$parser = simplexml_load_file(getFileURI('components/itunes_categories/itunes_categories.xml'),'SimpleXMLElement',LIBXML_NOCDATA);
 	
 }
 

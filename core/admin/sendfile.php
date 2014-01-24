@@ -217,7 +217,7 @@ else $filenamechanged = $filenameWithouExtension;
 	$uploadFile = $upload_dir . $filenamechanged.".".$fileExtension ;
 
 
-	while (file_exists("$uploadFile")) { //cicle: if file already exists add an incremental suffix
+	while (fileExists("$uploadFile")) { //cicle: if file already exists add an incremental suffix
 		$filesuffix++;
 
 		# $PG_mainbody .= "$filesuffix"; //debug
@@ -344,11 +344,7 @@ else $filenamechanged = $filenameWithouExtension;
 
 		/////////////////////
 		// WRITE THE XML FILE
-		$fp = fopen($absoluteurl.$upload_dir.$file_desc,'a'); //open desc file or create it
-
-		fwrite($fp,$xmlfiletocreate);
-
-		fclose($fp);
+		appendFile($absoluteurl.$upload_dir.$file_desc, $xmlfiletocreate);
 
 
 		########## END CREATION XML FILE
